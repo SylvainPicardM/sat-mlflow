@@ -27,6 +27,6 @@ train:
   params:
     params.yaml:
       train.batch_size: 50
-      train.epochs: 1
+      train.epochs: 2
       train.log_interval: 10
       train.train_dir: /Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/train
