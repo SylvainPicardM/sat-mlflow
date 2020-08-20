@@ -1,0 +1,4 @@
+prepare:
+  data_dir: "/Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/original"
+  out_dir: "/Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/"
+  train_size: 0.7

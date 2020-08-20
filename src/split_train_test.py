@@ -1,10 +1,12 @@
 import os
 import numpy as np
 import pandas as pd
-import argparse
+# import argparse
 from pathlib import Path
 import shutil
 from typing import Tuple
+import yaml
+from argparse import Namespace
 
 def clear_dir(path:Path) -> None:
 	"""
@@ -98,6 +100,7 @@ def main(args):
 	os.makedirs(test_path, exist_ok=True)
 
 	# Remove files in train and test dir if exists
+	print('Cleaning dirs...')
 	clear_dir(train_path)
 	clear_dir(test_path)
 
@@ -109,21 +112,24 @@ def main(args):
 
 	train_data, test_data = split_df(files_df, split_size=args.train_size)
 
-	print('Writing training data')
+	print('Writing training data...')
 	for i, row in train_data.iterrows():
 		newpath = os.path.join(output_path, "train", row.label, row.filename)
 		shutil.copyfile(row.path, newpath)
 
-	print('Writing test data')
+	print('Writing test data...')
 	for i, row in test_data.iterrows():
 		newpath = os.path.join(output_path, "test", row.label, row.filename)
 		shutil.copyfile(row.path, newpath)
 
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()
-	parser.add_argument("--data_dir", "-d", type=str, required=True, help="Path to original data")
-	parser.add_argument("--out_dir", "-o", type=str, required=True, help="Path to output directory")
-	parser.add_argument("--train_size", "-t", type=float, default=.7, help="Size of training set in pourcentage of total")
-	args = parser.parse_args()
+
+	params = yaml.safe_load(open('params.yaml'))['prepare']
+	args = Namespace(**params)
+	# parser = argparse.ArgumentParser()
+	# parser.add_argument("--data_dir", "-d", type=str, required=True, help="Path to original data")
+	# parser.add_argument("--out_dir", "-o", type=str, required=True, help="Path to output directory")
+	# parser.add_argument("--train_size", "-t", type=float, default=.7, help="Size of training set in pourcentage of total")
+	# args = parser.parse_args()
 	main(args)

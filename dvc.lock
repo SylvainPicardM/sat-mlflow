@@ -1,0 +1,19 @@
+prepare:
+  cmd: python src/split_train_test.py --data_dir /Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/original/
+    --out_dir /Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/ --train_size
+    0.7
+  deps:
+  - path: data/original
+    md5: bff43f93e1bb7c85d1021434eb407e8a.dir
+  - path: src/split_train_test.py
+    md5: 359a8a65873e9fa285dcb4ce827816fc
+  params:
+    params.yaml:
+      prepare.data_dir: /Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/original
+      prepare.out_dir: /Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/
+      prepare.train_size: 0.7
+  outs:
+  - path: data/test
+    md5: 4cbc8bf9c9562069d3e7be6313e5083e.dir
+  - path: data/train
+    md5: c51461c4cbce0346dae90c364af67d3e.dir
