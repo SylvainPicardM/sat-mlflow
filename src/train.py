@@ -44,8 +44,6 @@ def train(epoch, model, trainloader):
 			running_loss = 0.0
 			mlflow.log_metric('loss', round(running_loss / args.log_interval, 3))
 			mlflow.log_metric('train_accuracy', round(100 * tcorrect / ttotal, 2))
-			break
-
 
 def test(epoch, model, valloader):
 	vcorrect = 0
@@ -59,7 +57,6 @@ def test(epoch, model, valloader):
 			vcorrect += (predicted == labels).sum().item()
 	print(f'Epoch {epoch + 1} - Validation accuracy: {round(100 * vcorrect / vtotal, 2)}%')
 	mlflow.log_metric('val_accuracy', round(100 * vcorrect / vtotal, 2))
-
 
 def main(args):
 	# GET DATA
@@ -87,9 +84,9 @@ def main(args):
 			test(epoch, model, valloader)
 
 
-	print('Finished Training')
-	mlflow.pytorch.log_model(model, artifact_path="pytorch-model", pickle_module=pickle)
-	print("\nThe model is logged at:\n%s" % os.path.join(mlflow.get_artifact_uri(), "pytorch-model"))
+		print('Finished Training')
+		mlflow.pytorch.log_model(model, artifact_path="pytorch-model", pickle_module=pickle)
+		print("\nThe model is logged at:\n%s" % os.path.join(mlflow.get_artifact_uri(), "pytorch-model"))
 
 
 

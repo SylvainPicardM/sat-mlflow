@@ -23,13 +23,10 @@ train:
   - path: data/train
     md5: c51461c4cbce0346dae90c364af67d3e.dir
   - path: src/train.py
-    md5: 56614f0c37804030ec1144ee3450de82
+    md5: 50473b5b24c9f1b9f3b309dbe4bfb85c
   params:
     params.yaml:
       train.batch_size: 50
-      train.epochs: 2
+      train.epochs: 1
       train.log_interval: 10
       train.train_dir: /Users/sylvainpicard/Code/PRO/EUCLID/DVC/sat-mlflow/data/train
-  outs:
-  - path: mlruns
-    md5: 85e85cd7f47f077798a09bf83e3f8407.dir

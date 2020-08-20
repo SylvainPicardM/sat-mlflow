@@ -13,6 +13,7 @@ stages:
     outs:
     - data/test
     - data/train
+
   train:
     cmd: python src/train.py
     deps:
@@ -23,5 +24,3 @@ stages:
     - train.epochs
     - train.log_interval
     - train.train_dir
-    outs:
-    - mlruns
